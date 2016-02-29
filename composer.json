@@ -1,0 +1,30 @@
+{
+    "name": "vanio/type-parser",
+    "description": "Library for parsing property types defined using @var PHPDoc annotation",
+    "keywords": ["type", "var", "annotation", "docblock", "parser"],
+    "type": "library",
+    "homepage": "https://github.com/vaniocz/TypeParser",
+    "license": "MIT",
+    "authors": [
+        {"name": "Marek Štípek", "email": "marek.stipek@vanio.cz"}
+    ],
+    "require": {
+        "php": ">=7.0",
+        "doctrine/annotations": "^1.2",
+        "doctrine/cache": "^1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {"Vanio\\TypeParser\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": { "Vanio\\TypeParser\\Tests\\": "tests/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
