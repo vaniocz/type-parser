@@ -11,5 +11,5 @@ Work in Progress
 - `scalar` pseudo-type, which is either a `string`, `integer`, `float` or `boolean`.
 - Generic type parameters union and/or recursive/deep ones? (`array<int|string, array<int|string>>`) PSR-5 contains it in the spec draft, but does not look they have generics implemented 
 - Array expressions `(int|string)[]`
-- Smarter merging of collection generic compounds (`Collection<int, string>|Collection<string, string> -> Collection<scalar, string>` or `Collection<int, string>|Collection<string> -> Collection<string>`)
+- Smarter merging of collection generic compounds (`Collection<int, string>|Collection<string, string> -> Collection<scalar, string>` or `Collection<int, string>|Collection<string> -> Collection<string>` or even optinally `Collection<int, string>|string[] -> string[]`)
 - Allow returning type compounds and then only optionally resolve them into a single type (like it's done now, just using polymorphism instead of the hardcoded logic inside the parser)
