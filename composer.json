@@ -22,6 +22,9 @@
     "autoload-dev": {
         "psr-4": { "Vanio\\TypeParser\\Tests\\": "tests/" }
     },
+    "scripts": {
+        "test": "\"./vendor/bin/phpunit\""
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "0.1.x-dev"
