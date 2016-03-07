@@ -1,7 +1,7 @@
 {
     "name": "vanio/type-parser",
     "description": "Library for parsing property types defined using @var PHPDoc annotation",
-    "keywords": ["type", "var", "annotation", "docblock", "parser"],
+    "keywords": ["type", "var", "annotation", "docblock", "parser", "type resolver"],
     "type": "library",
     "homepage": "https://github.com/vaniocz/type-parser",
     "license": "MIT",
