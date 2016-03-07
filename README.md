@@ -6,3 +6,20 @@
 Library for parsing type expressions and/or property types defined using var PHPDoc annotation almost as defined in PSR-5 specification draft, just a little bit more permissive.
 
 PSR-5 ABNF: https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md#user-content-abnf
+
+#Example
+```php
+<?php
+use Doctrine\Common\Cache\FilesystemCache;
+use Vanio\TypeParser\CachingParser;
+use Vanio\TypeParser\Tests\Fixtures\Foo;
+use Vanio\TypeParser\TypeContextFactory;
+use Vanio\TypeParser\TypeParser;
+use Vanio\TypeParser\TypeResolver;
+use Vanio\TypeParser\UseStatementsParser;
+
+$typeParser = new TypeParser(new TypeResolver, new TypeContextFactory(new UseStatementsParser));
+$typeParser = new CachingParser($typeParser, new FilesystemCache(__DIR__ . '/cache'));
+$type = $typeParser->parsePropertyTypes(Foo::class);
+$type['scalar']->type(); // /** @var int | string */ -> scalar
+```
