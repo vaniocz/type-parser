@@ -21,5 +21,5 @@ use Vanio\TypeParser\UseStatementsParser;
 $typeParser = new TypeParser(new TypeResolver, new TypeContextFactory(new UseStatementsParser));
 $typeParser = new CachingParser($typeParser, new FilesystemCache(__DIR__ . '/cache'));
 $type = $typeParser->parsePropertyTypes(Foo::class);
-$type['scalar']->type(); // /** @var int | string */ -> scalar
+$type['scalar']->type(); // /** @var int|string */ -> new CompoundType(Type::INTEGER, Type::STRING) -> new SimpleType(Type::SCALAR)
 ```
