@@ -3,7 +3,7 @@
     "description": "Library for parsing property types defined using @var PHPDoc annotation",
     "keywords": ["type", "var", "annotation", "docblock", "parser"],
     "type": "library",
-    "homepage": "https://github.com/vaniocz/TypeParser",
+    "homepage": "https://github.com/vaniocz/type-parser",
     "license": "MIT",
     "authors": [
         {"name": "Marek Štípek", "email": "marek.stipek@vanio.cz"}
