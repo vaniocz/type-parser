@@ -3,6 +3,7 @@ namespace Vanio\TypeParser\Tests;
 
 use Doctrine\Common\Cache\ArrayCache;
 use Vanio\TypeParser\CachingParser;
+use Vanio\TypeParser\SimpleType;
 use Vanio\TypeParser\Tests\Fixtures\Foo;
 use Vanio\TypeParser\Type;
 use Vanio\TypeParser\TypeParser;
@@ -20,7 +21,7 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->types = [new Type('type')];
+        $this->types = [new SimpleType(Type::STRING)];
         $this->typeParser = $this->getMockWithoutInvokingTheOriginalConstructor(TypeParser::class);
         $this->typeParser->expects($this->once())
             ->method('parsePropertyTypes')
@@ -29,7 +30,7 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
         $this->cache = new ArrayCache;
     }
 
-    function test_it_parses_property_types()
+    function test_parsing_property_types()
     {
         $cachingParser = new CachingParser($this->typeParser, $this->cache);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
@@ -43,7 +44,7 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(1, $this->cache->getStats()['hits']);
     }
 
-    function test_it_parses_property_types_without_cache_invalidation()
+    function test_parsing_property_types_without_cache_invalidation()
     {
         $cachingParser = new CachingParser($this->typeParser, $this->cache, false);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));

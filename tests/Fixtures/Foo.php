@@ -38,6 +38,9 @@ class Foo
     public $genericArray;
 
     /** @var int | string */
+    public $scalar;
+
+    /** @var int|string|object */
     public $mixed;
 
     /** @var int */

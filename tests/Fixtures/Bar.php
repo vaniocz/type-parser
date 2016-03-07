@@ -3,6 +3,6 @@ namespace Vanio\TypeParser\Tests\Fixtures;
 
 class Bar extends Foo
 {
-    /** @var number */
+    /** @var float */
     protected $extended;
 }

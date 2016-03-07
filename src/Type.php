@@ -1,100 +1,68 @@
 <?php
 namespace Vanio\TypeParser;
 
-class Type
+interface Type
 {
+    const VOID = 'void';
+    const NULL = 'null';
     const STRING = 'string';
     const INTEGER = 'int';
     const FLOAT = 'float';
     const BOOLEAN = 'bool';
+    const SCALAR = 'scalar';
     const ARRAY = 'array';
-    const RESOURCE = 'resource';
-    const NULL = 'null';
-    const CALLABLE = 'callable';
-    const MIXED = 'mixed';
-    const VOID = 'void';
     const OBJECT = 'object';
+    const CALLABLE = 'callable';
+    const RESOURCE = 'resource';
+    const MIXED = 'mixed';
 
     const TYPES = [
+        'void' => self::VOID,
+        'null' => self::NULL,
         'string' => self::STRING,
         'int' => self::INTEGER,
         'integer' => self::INTEGER,
-        'number' => self::FLOAT,
         'float' => self::FLOAT,
+        'double' => self::FLOAT,
+        'number' => self::FLOAT,
         'bool' => self::BOOLEAN,
         'boolean' => self::BOOLEAN,
         'false' => self::BOOLEAN,
         'true' => self::BOOLEAN,
+        'scalar' => self::SCALAR,
         'array' => self::ARRAY,
         'resource' => self::RESOURCE,
-        'null' => self::NULL,
         'callable' => self::CALLABLE,
         'callback' => self::CALLABLE,
-        'void' => self::VOID,
         'object' => self::OBJECT,
+        'self' => self::OBJECT,
+        'static' => self::OBJECT,
+        '$this' => self::OBJECT,
         'mixed' => self::MIXED,
     ];
 
-    /** @var string */
-    private $literal;
+    function type(): string;
 
-    /** @var bool */
-    private $nullable = false;
+    function isScalar(): bool;
 
-    /** @var string[] */
-    private $typeParameters;
+    function isTypedObject(): bool;
 
-    /**
-     * @param string $type
-     * @param bool $nullable
-     * @param string[] $typeParameters
-     */
-    public function __construct(string $type, bool $nullable = false, array $typeParameters = [])
-    {
-        $type = self::TYPES[strtolower($type)] ?? $type;
+    function isCollection(): bool;
 
-        if ($type === self::ARRAY && count($typeParameters) === 1) {
-            $this->literal = current($typeParameters) . '[]';
-        } else {
-            $this->literal = $typeParameters ? sprintf('%s<%s>', $type, implode(', ', $typeParameters)) : $type;
-        }
+    function isNullable(): bool;
 
-        if (in_array($type, [self::NULL, self::MIXED])) {
-            $this->nullable = true;
-        } elseif ($nullable) {
-            $this->nullable = true;
-            $this->literal .= '|null';
-        }
+    function isGeneric(): bool;
 
-        $this->type = $type;
-        $this->typeParameters = $typeParameters;
-    }
-
-    public function type(): string
-    {
-        return $this->type;
-    }
-
-    public function isNullable(): bool
-    {
-        return $this->nullable;
-    }
+    function isCompound(): bool;
 
     /**
-     * @return string[]
+     * @return self[]
      */
-    public function typeParameters(): array
-    {
-        return $this->typeParameters;
-    }
+    function typeParameters(): array;
 
-    public function isGeneric(): bool
-    {
-        return (bool) $this->typeParameters;
-    }
+    function equals($value): bool;
 
-    public function __toString(): string
-    {
-        return $this->literal;
-    }
+    function merge(Type $type): self;
+
+    function __toString(): string;
 }
