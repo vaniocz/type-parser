@@ -4,19 +4,12 @@ php:
     - 7.0
 
 install:
-    - ls ../
-    - ls ../../
-    - ls ../../../
-    - ls ../../../../
-    - ls ../../../../../
-    - php -n bin/composer.phar require satooshi/php-coveralls
+    - composer self-update
+    - composer require satooshi/php-coveralls
+    - composer update
 
-before_script:
-    - php -n bin/composer.phar self-update
-    - php -n bin/composer.phar update
-    - mkdir -p build/logs
-    
 script:
+    - phpenv config-rm xdebug.ini
     - phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
