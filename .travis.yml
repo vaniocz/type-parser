@@ -4,11 +4,11 @@ php:
     - 7.0
 
 install:
-    - php -n /home/travis/.phpenv/versions/7.0/bin/composer.phar require satooshi/php-coveralls
-  
+    - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer.phar require satooshi/php-coveralls
+
 before_script:
-    - php -n /home/travis/.phpenv/versions/7.0/bin/composer.phar require self-update
-    - php -n /home/travis/.phpenv/versions/7.0/bin/composer.phar require update
+    - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer.phar require self-update
+    - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer.phar require update
 
 script:
     - phpunit --coverage-clover build/logs/clover.xml
