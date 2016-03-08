@@ -7,7 +7,7 @@ cache:
 php:
     - 7.0
 
-before_install:
+before_install: []
 
 install:
     - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer self-update
