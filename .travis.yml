@@ -7,8 +7,6 @@ cache:
 php:
     - 7.0
 
-before_install: []
-
 install:
     - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer self-update
     - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer require satooshi/php-coveralls
