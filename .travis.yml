@@ -4,11 +4,11 @@ php:
     - 7.0
 
 install:
-    - php -n composer.phar require satooshi/php-coveralls
+    - php -n bin/composer.phar require satooshi/php-coveralls
   
 before_script:
-    - php -n composer.phar self-update
-    - php -n composer.phar update
+    - php -n bin/composer.phar self-update
+    - php -n bin/composer.phar update
     - mkdir -p build/logs
     
 script:
