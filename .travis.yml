@@ -5,10 +5,13 @@ php:
 
 install:
     - ls ../
+    - ls ../../
+    - ls ../../../
+    - ls ../../../../
+    - ls ../../../../../
     - php -n bin/composer.phar require satooshi/php-coveralls
 
 before_script:
-    - ls ../
     - php -n bin/composer.phar self-update
     - php -n bin/composer.phar update
     - mkdir -p build/logs
