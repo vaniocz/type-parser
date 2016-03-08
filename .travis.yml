@@ -8,10 +8,8 @@ php:
     - 7.0
 
 install:
-    - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer require satooshi/php-coveralls
-
-before_script:
     - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer self-update
+    - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer require satooshi/php-coveralls
     - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer update
 
 script:
