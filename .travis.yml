@@ -4,12 +4,13 @@ php:
     - 7.0
 
 install:
-    - composer self-update
-    - composer require satooshi/php-coveralls
-    - composer update
+    - php -n /home/travis/.phpenv/versions/7.0/bin/composer.phar require satooshi/php-coveralls
+  
+before_script:
+    - php -n /home/travis/.phpenv/versions/7.0/bin/composer.phar require self-update
+    - php -n /home/travis/.phpenv/versions/7.0/bin/composer.phar require update
 
 script:
-    - phpenv config-rm xdebug.ini
     - phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
