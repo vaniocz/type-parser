@@ -4,6 +4,9 @@ php:
     - 7.0
 
 install:
+    - ls $HOME
+    - ls $HOME/.composer
+    - ls $HOME/.composer/bin
     - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer.phar require satooshi/php-coveralls
 
 before_script:
