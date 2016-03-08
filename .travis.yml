@@ -7,6 +7,7 @@ install:
     - php -n bin/composer.phar require satooshi/php-coveralls
   
 before_script:
+    - whereis composer
     - php -n bin/composer.phar self-update
     - php -n bin/composer.phar update
     - mkdir -p build/logs
