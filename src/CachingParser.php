@@ -41,7 +41,8 @@ class CachingParser implements Parser
             }
 
             if (!$propertyTypes = $this->cache->fetch($class)) {
-                $this->cache->save($class, $propertyTypes = $this->parser->parsePropertyTypes($class));
+                $propertyTypes = $this->parser->parsePropertyTypes($class);
+                $this->cache->save($class, $propertyTypes);
             }
 
             $this->propertyTypes[$class] = $propertyTypes;
@@ -56,8 +57,8 @@ class CachingParser implements Parser
      */
     private function resolveCacheNamespace(\ReflectionClass $class)
     {
-        $fileName = preg_replace('~\(\d+\) : eval\(\)\'d code$~', '', $class->getFileName());
+        $file = preg_replace('~\(\d+\) : eval\(\)\'d code$~', '', $class->getFileName());
 
-        return @filemtime($fileName);
+        return sprintf('%s[%d]', $file, @filemtime($file));
     }
 }
