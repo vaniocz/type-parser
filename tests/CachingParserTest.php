@@ -35,7 +35,7 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
         $cachingParser = new CachingParser($this->typeParser, $this->cache);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
         $namespace = $this->cache->getNamespace();
-        $this->assertRegExp('~Foo\.php\[\d+\]$~', $namespace);
+        $this->assertRegExp(sprintf('~%s\[.*\Foo\.php\]\[\d+\]$~', preg_quote(CachingParser::class)), $namespace);
 
         $cachingParser = new CachingParser($this->typeParser, $this->cache);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
@@ -49,7 +49,7 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
     {
         $cachingParser = new CachingParser($this->typeParser, $this->cache, false);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
-        $this->assertEmpty($this->cache->getNamespace());
+        $this->assertEquals(CachingParser::class, $this->cache->getNamespace());
 
         $cachingParser = new CachingParser($this->typeParser, $this->cache, false);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
