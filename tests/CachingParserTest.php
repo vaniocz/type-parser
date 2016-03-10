@@ -13,7 +13,7 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
     /** @var Type[] */
     private $types;
 
-    /** @var ArrayCache */
+    /** @var ArrayCache|\PHPUnit_Framework_MockObject_MockObject */
     private $cache;
 
     /** @var TypeParser|\PHPUnit_Framework_MockObject_MockObject */
@@ -27,19 +27,25 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
             ->method('parsePropertyTypes')
             ->with(Foo::class)
             ->willReturn($this->types);
-        $this->cache = new ArrayCache;
+        $this->cache = $this->getMockBuilder(ArrayCache::class)->enableProxyingToOriginalMethods()->getMock();
     }
 
     function test_parsing_property_types()
     {
-        $cachingParser = new CachingParser($this->typeParser, $this->cache);
-        $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
-        $namespace = $this->cache->getNamespace();
-        $this->assertRegExp(sprintf('~%s\[.*\Foo\.php\]\[\d+\]$~', preg_quote(CachingParser::class)), $namespace);
+        $cacheIdPattern = sprintf(
+            '~%s\[.*\Foo\.php\]\[\d+\]\[%s]$~',
+            preg_quote(CachingParser::class),
+            preg_quote(Foo::class)
+        );
+        $this->cache->expects($this->any())
+            ->method('fetch')
+            ->with($this->matchesRegularExpression($cacheIdPattern));
 
         $cachingParser = new CachingParser($this->typeParser, $this->cache);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
-        $this->assertSame($namespace, $this->cache->getNamespace());
+
+        $cachingParser = new CachingParser($this->typeParser, $this->cache);
+        $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
 
         $this->assertSame(1, $this->cache->getStats()['hits']);
@@ -47,9 +53,12 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
 
     function test_parsing_property_types_without_cache_invalidation()
     {
+        $this->cache->expects($this->any())
+            ->method('fetch')
+            ->with(sprintf('%s[%s]', CachingParser::class, Foo::class));
+
         $cachingParser = new CachingParser($this->typeParser, $this->cache, false);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));
-        $this->assertEquals(CachingParser::class, $this->cache->getNamespace());
 
         $cachingParser = new CachingParser($this->typeParser, $this->cache, false);
         $this->assertEquals($this->types, $cachingParser->parsePropertyTypes(Foo::class));

@@ -1,14 +1,14 @@
 <?php
 namespace Vanio\TypeParser;
 
-use Doctrine\Common\Cache\CacheProvider;
+use Doctrine\Common\Cache\Cache;
 
 class CachingParser implements Parser
 {
     /** @var Parser */
     private $parser;
 
-    /** @var CacheProvider */
+    /** @var Cache */
     private $cache;
 
     /** @var Type[]|null */
@@ -19,10 +19,10 @@ class CachingParser implements Parser
 
     /**
      * @param Parser $parser
-     * @param CacheProvider $cache
+     * @param Cache $cache
      * @param bool $debug Whether to invalidate cache on file change (slower)
      */
-    public function __construct(Parser $parser, CacheProvider $cache, bool $debug = true)
+    public function __construct(Parser $parser, Cache $cache, bool $debug = true)
     {
         $this->parser = $parser;
         $this->cache = $cache;
@@ -36,11 +36,11 @@ class CachingParser implements Parser
     public function parsePropertyTypes(string $class): array
     {
         if (!isset($this->propertyTypes[$class])) {
-            $this->cache->setNamespace($this->resolveCacheNamespace($class));
+            $cacheId = $this->resolveCacheId($class);
 
-            if (!$propertyTypes = $this->cache->fetch($class)) {
+            if (!$propertyTypes = $this->cache->fetch($cacheId)) {
                 $propertyTypes = $this->parser->parsePropertyTypes($class);
-                $this->cache->save($class, $propertyTypes);
+                $this->cache->save($cacheId, $propertyTypes);
             }
 
             $this->propertyTypes[$class] = $propertyTypes;
@@ -53,14 +53,15 @@ class CachingParser implements Parser
      * @param string $class
      * @return int|bool
      */
-    private function resolveCacheNamespace(string $class)
+    private function resolveCacheId(string $class)
     {
-        if (!$this->debug) {
-            return __CLASS__;
+        if ($this->debug) {
+            $file = preg_replace('~\(\d+\) : eval\(\)\'d code$~', '', (new \ReflectionClass($class))->getFileName());
+            $namespace = sprintf('%s[%s][%d]', __CLASS__, $file, @filemtime($file));
+        } else {
+            $namespace = __CLASS__;
         }
 
-        $file = preg_replace('~\(\d+\) : eval\(\)\'d code$~', '', (new \ReflectionClass($class))->getFileName());
-
-        return sprintf('%s[%s][%d]', __CLASS__, $file, @filemtime($file));
+        return sprintf('%s[%s]', $namespace, $class);
     }
 }
