@@ -76,7 +76,7 @@ class GenericTypeTest extends \PHPUnit_Framework_TestCase
 
     function test_it_does_not_have_to_be_a_collection()
     {
-        $this->assertFalse((new GenericType(\stdClass::class , [Type::STRING]))->isCollection());
+        $this->assertFalse((new GenericType(\stdClass::class, [Type::STRING]))->isCollection());
     }
 
     function test_it_cannot_be_nullable()

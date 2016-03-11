@@ -80,7 +80,7 @@ class TypeResolver
             : [];
 
         foreach ($typeParameters as $i => $typeParameter) {
-            $typeParameters[$i] = $this->resolveType($typeParameter,$context);
+            $typeParameters[$i] = $this->resolveType($typeParameter, $context);
         }
 
         $genericType = !strcmp($genericType, Type::ARRAY)
@@ -107,7 +107,7 @@ class TypeResolver
             return $className ? sprintf('%s\%s', $alias, $className) : $alias;
         }
 
-        return sprintf('%s\%s', $context->namespace(), $class);
+        return sprintf('%s\%s', $context->namespaceName(), $class);
     }
 
     private function normalizeKeyword(string $keyword): string

@@ -13,6 +13,7 @@ install:
     - php -n ~/.phpenv/versions/$(phpenv version-name)/bin/composer update
 
 script:
+    - vendor/bin/phpcs --standard=ruleset.xml --extensions=php --encoding=utf-8 -sp src tests --ignore=tests/Fixtures/*
     - phpunit --coverage-clover build/logs/clover.xml
 
 after_success:

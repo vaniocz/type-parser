@@ -29,10 +29,10 @@ class TypeContextTest extends \PHPUnit_Framework_TestCase
 
     function test_namespace_can_be_obtained()
     {
-        $this->assertSame(__NAMESPACE__, TypeContext::fromNamespace(__NAMESPACE__)->namespace());
-        $this->assertSame(__NAMESPACE__, $this->typeContext->namespace());
-        $this->assertSame(__NAMESPACE__, TypeContext::fromClass(__CLASS__)->namespace());
-        $this->assertSame(__NAMESPACE__, TypeContext::fromClass(__CLASS__, __CLASS__)->namespace());
+        $this->assertSame(__NAMESPACE__, TypeContext::fromNamespace(__NAMESPACE__)->namespaceName());
+        $this->assertSame(__NAMESPACE__, $this->typeContext->namespaceName());
+        $this->assertSame(__NAMESPACE__, TypeContext::fromClass(__CLASS__)->namespaceName());
+        $this->assertSame(__NAMESPACE__, TypeContext::fromClass(__CLASS__, __CLASS__)->namespaceName());
     }
 
     function test_namespace_aliases_can_be_obtained()
@@ -53,13 +53,13 @@ class TypeContextTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(__CLASS__, TypeContext::fromClass(__CLASS__)->declaringClassName());
     }
 
-    function test_class_can_be_obtained()
+    function test_reflection_class_can_be_obtained()
     {
-        $this->assertNull(TypeContext::fromNamespace(__NAMESPACE__)->class());
-        $this->assertSame(__CLASS__, $this->typeContext->class()->name);
+        $this->assertNull(TypeContext::fromNamespace(__NAMESPACE__)->reflectionClass());
+        $this->assertSame(__CLASS__, $this->typeContext->reflectionClass()->name);
 
         $class = new \ReflectionClass(\stdClass::class);
-        $this->assertSame(\stdClass::class, TypeContext::fromClass(__CLASS__, $class)->class()->name);
+        $this->assertSame(\stdClass::class, TypeContext::fromClass(__CLASS__, $class)->reflectionClass()->name);
     }
 
     function test_class_name_be_obtained()

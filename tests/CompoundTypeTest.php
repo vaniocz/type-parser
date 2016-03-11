@@ -53,7 +53,7 @@ class CompoundTypeTest extends \PHPUnit_Framework_TestCase
 
     function test_it_can_be_a_typed_object()
     {
-        $this->assertTrue((new CompoundType(__CLASS__,__CLASS__))->isTypedObject());
+        $this->assertTrue((new CompoundType(__CLASS__, __CLASS__))->isTypedObject());
     }
 
     function test_it_does_not_have_to_be_a_typed_object()

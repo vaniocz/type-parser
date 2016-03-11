@@ -30,6 +30,10 @@ class TypeParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param string $property
+     * @param string $type
+     * @param Type[] $typeParameters
+     * @param bool $nullable
      * @dataProvider fooTypes
      */
     function test_it_parses_property_types(string $property, string $type, array $typeParameters, bool $nullable)

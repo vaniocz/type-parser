@@ -51,9 +51,9 @@ class TypeContext
 
     /**
      * @param string $namespace
+     * @param string[] $namespaceAliases
      * @param \ReflectionClass|null $declaringClass
      * @param \ReflectionClass|null $class
-     * @param string[] $namespaceAliases
      */
     private function __construct(
         string $namespace,
@@ -63,11 +63,11 @@ class TypeContext
     ) {
         $this->namespace = ltrim($namespace, '\\');
         $this->namespaceAliases = $namespaceAliases;
-        $this->class = $class;
         $this->declaringClass = $declaringClass;
+        $this->class = $class;
     }
 
-    public function namespace(): string
+    public function namespaceName(): string
     {
         return $this->namespace;
     }
@@ -99,7 +99,7 @@ class TypeContext
     /**
      * @return \ReflectionClass|null
      */
-    public function class()
+    public function reflectionClass()
     {
         return $this->class;
     }

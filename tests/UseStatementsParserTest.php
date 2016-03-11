@@ -1,8 +1,6 @@
 <?php
 namespace Vanio\TypeParser\Tests;
 
-use Vanio\TypeParser\UseStatementsParser;
-
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\ClassUsesTrait;
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\ClassWithClosureDeclaration;
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\ClassWithFullyQualifiedUseStatements;
@@ -15,6 +13,7 @@ use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\MultipleImportsInUseStat
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\NamespaceAndClassCommentedOut;
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\NamespaceWithClosureDeclaration;
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\TestInterface;
+use Vanio\TypeParser\UseStatementsParser;
 
 const FIXTURES_DIRECTORY = __DIR__ . '/Fixtures/UseStatementsParser/';
 
@@ -38,7 +37,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(MultipleClassesInFile::class)
@@ -49,7 +48,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(MultipleImportsInUseStatement::class)
@@ -78,7 +77,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(\Vanio_TypeParser_Tests_Fixtures_UseStatementsParser_NonNamespacedClass::class)
@@ -89,7 +88,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(TestInterface::class)
@@ -100,7 +99,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
                 'baz' => self::FIXTURES_NAMESPACE . '\Import\Baz',
             ],
@@ -112,7 +111,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(NamespaceAndClassCommentedOut::class)
@@ -123,7 +122,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(EqualNamespacesPerFileWithClassAsFirst::class)
@@ -134,7 +133,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'bar'  => self::FIXTURES_NAMESPACE . '\Import\Bar',
+                'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
                 'baz' => self::FIXTURES_NAMESPACE . '\Import\Baz',
             ],
             $this->parser->parseClass(EqualNamespacesPerFileWithClassAsLast::class)
@@ -144,7 +143,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     public function test_parsing_class_with_different_namespaces_per_file_having_class_as_first()
     {
         $this->assertSame(
-            ['foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo'],
+            ['foo' => self::FIXTURES_NAMESPACE . '\Import\Foo'],
             $this->parser->parseClass(DifferentNamespacesPerFileWithClassAsFirst::class)
         );
     }
@@ -152,7 +151,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     public function test_parsing_class_with_different_namespaces_per_file_having_class_as_last()
     {
         $this->assertSame(
-            ['baz'  => self::FIXTURES_NAMESPACE . '\Import\Baz'],
+            ['baz' => self::FIXTURES_NAMESPACE . '\Import\Baz'],
             $this->parser->parseClass(DifferentNamespacesPerFileWithClassAsLast::class)
         );
     }
@@ -161,7 +160,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(\Vanio_TypeParser_Tests_Fixtures_UseStatementsParser_GlobalNamespacesPerFileWithClassAsFirst::class)
@@ -172,7 +171,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'bar'  => self::FIXTURES_NAMESPACE . '\Import\Bar',
+                'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
                 'baz' => self::FIXTURES_NAMESPACE . '\Import\Baz',
             ],
             $this->parser->parseClass(\Vanio_TypeParser_Tests_Fixtures_UseStatementsParser_GlobalNamespacesPerFileWithClassAsLast::class)
@@ -183,7 +182,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(NamespaceWithClosureDeclaration::class)
@@ -194,7 +193,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(ClassWithClosureDeclaration::class)
@@ -205,7 +204,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseClass(ClassUsesTrait::class)
@@ -216,7 +215,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseNamespace(
@@ -230,7 +229,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseNamespace(
@@ -257,7 +256,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
                 'baz' => self::FIXTURES_NAMESPACE . '\Import\Baz',
             ],
@@ -272,7 +271,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
                 'baz' => self::FIXTURES_NAMESPACE . '\Import\Baz',
             ],
@@ -284,7 +283,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseNamespace(
@@ -298,7 +297,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseNamespace(
@@ -312,7 +311,7 @@ class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [
-                'foo'  => self::FIXTURES_NAMESPACE . '\Import\Foo',
+                'foo' => self::FIXTURES_NAMESPACE . '\Import\Foo',
                 'bar' => self::FIXTURES_NAMESPACE . '\Import\Bar',
             ],
             $this->parser->parseNamespace(

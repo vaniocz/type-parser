@@ -28,7 +28,7 @@ class TypeContextFactoryTest extends \PHPUnit_Framework_TestCase
             ->willReturn($this->namespaceAliases);
 
         $context = $contextFactory->createContextFromNamespace(__NAMESPACE__, __FILE__);
-        $this->assertSame(__NAMESPACE__, $context->namespace());
+        $this->assertSame(__NAMESPACE__, $context->namespaceName());
     }
 
     function test_creating_context_from_class()
@@ -41,7 +41,7 @@ class TypeContextFactoryTest extends \PHPUnit_Framework_TestCase
             ->willReturn($this->namespaceAliases);
 
         $context = $contextFactory->createContextFromClass(__CLASS__, $class);
-        $this->assertSame(__NAMESPACE__, $context->namespace());
+        $this->assertSame(__NAMESPACE__, $context->namespaceName());
         $this->assertSame(__CLASS__, $context->declaringClassName());
         $this->assertSame(\stdClass::class, $context->className());
 
