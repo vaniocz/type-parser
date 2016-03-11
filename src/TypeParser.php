@@ -26,11 +26,13 @@ class TypeParser implements Parser
     }
 
     /**
-     * @param string $class
+     * @param object|string $class
      * @return Type[]
      */
-    public function parsePropertyTypes(string $class): array
+    public function parsePropertyTypes($class): array
     {
+        $class = is_object($class) ? get_class($class) : (string) $class;
+
         if (!isset($this->propertyTypes[$class])) {
             $this->propertyTypes[$class] = [];
             $reflectionClass = new \ReflectionClass($class);

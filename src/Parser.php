@@ -4,8 +4,8 @@ namespace Vanio\TypeParser;
 interface Parser
 {
     /**
-     * @param string $class
+     * @param object|string $class
      * @return Type[]
      */
-    function parsePropertyTypes(string $class): array;
+    function parsePropertyTypes($class): array;
 }
