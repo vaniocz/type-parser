@@ -53,17 +53,22 @@ class CachingParser implements Parser
 
     /**
      * @param string $class
-     * @return int|bool
+     * @return string
      */
-    private function resolveCacheId(string $class)
+    private function resolveCacheId(string $class): string
     {
-        if ($this->debug) {
-            $file = preg_replace('~\(\d+\) : eval\(\)\'d code$~', '', (new \ReflectionClass($class))->getFileName());
-            $namespace = sprintf('%s[%s][%d]', __CLASS__, $file, @filemtime($file));
-        } else {
-            $namespace = __CLASS__;
+        if (!$this->debug) {
+            return sprintf('%s[%s]', __CLASS__, $class);
         }
 
-        return sprintf('%s[%s]', $namespace, $class);
+        $reflectionClass = new \ReflectionClass($class);
+        $file = preg_replace('~\(\d+\) : eval\(\)\'d code$~', '', $reflectionClass->getFileName());
+        $modificationTimes = [];
+
+        do {
+            $modificationTimes[] = @filemtime($reflectionClass->getFileName());
+        } while ($reflectionClass = $reflectionClass->getParentClass());
+
+        return sprintf('%s[%s][%s][%s]', __CLASS__, $file, implode(',', $modificationTimes), $class);
     }
 }
