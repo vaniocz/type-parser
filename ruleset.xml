@@ -22,6 +22,7 @@
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/> <!-- sometimes incorrectly marks code as a side effect -->
         <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/> <!-- multiple classes are sometimes useful -->
         <exclude name="Squiz.Classes.ClassFileName.NoMatch"/> <!-- because of multiple classes -->
+        <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfterAmp"/> <!-- reference looks better without whitespace -->
     </rule>
 
     <rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
