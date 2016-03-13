@@ -6,9 +6,10 @@
     backupGlobals="false"
     colors="true"
     bootstrap="vendor/autoload.php"
+    beStrictAboutTestsThatDoNotTestAnything="true"
 >
     <testsuites>
-        <testsuite name="TypeParser Test Suite">
+        <testsuite>
             <directory>tests</directory>
         </testsuite>
     </testsuites>

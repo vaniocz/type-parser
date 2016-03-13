@@ -20,6 +20,8 @@
         <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"/> <!-- it can be on the same line when arguments are spread to multiple lines -->
         <exclude name="Generic.NamingConventions.ConstructorName.OldStyle"/> <!-- can be used like a getter instead -->
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/> <!-- sometimes incorrectly marks code as a side effect -->
+        <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/> <!-- multiple classes are sometimes useful -->
+        <exclude name="Squiz.Classes.ClassFileName.NoMatch"/> <!-- because of multiple classes -->
     </rule>
 
     <rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
@@ -27,6 +29,7 @@
         <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
         <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified"/>
         <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName"/>
+        <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements.unusedMethod"/>
         <exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces"/>
         <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
     </rule>
