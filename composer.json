@@ -25,9 +25,9 @@
         "psr-4": { "Vanio\\TypeParser\\Tests\\": "tests/" }
     },
     "scripts": {
-        "test": "\"vendor/bin/phpunit\" & exit /b 0",
-        "lint": "\"vendor/bin/phpcs\" --standard=ruleset.xml --extensions=php --ignore=tests/Fixtures/* --encoding=utf-8 -sp src tests & exit /b 0",
-        "fix": "\"vendor/bin/phpcbf\" --standard=ruleset.xml --extensions=php --ignore=tests/Fixtures/* --encoding=utf-8 --no-patch -sp src tests & exit /b 0"
+        "test": "\"vendor/bin/phpunit\"",
+        "lint": "\"vendor/bin/phpcs\" --standard=ruleset.xml --extensions=php --ignore=tests/Fixtures/* --encoding=utf-8 -sp src tests",
+        "fix": "\"vendor/bin/phpcbf\" --standard=ruleset.xml --extensions=php --ignore=tests/Fixtures/* --encoding=utf-8 --no-patch -sp src tests"
     },
     "extra": {
         "branch-alias": {
