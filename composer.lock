@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f3bb002cb11f3c8916f6e9b10cdca30b",
+    "hash": "b1d63bc69448d7e580aab91c8d1e50dd",
     "content-hash": "00a08a37326d64caa23318175b5e7b00",
     "packages": [
         {
@@ -758,16 +758,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.2.10",
+            "version": "5.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1"
+                "reference": "6f0948bab32270352f97d1913d82a49338dcb0da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1",
-                "reference": "37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f0948bab32270352f97d1913d82a49338dcb0da",
+                "reference": "6f0948bab32270352f97d1913d82a49338dcb0da",
                 "shasum": ""
             },
             "require": {
@@ -828,7 +828,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-03-03 08:52:58"
+            "time": "2016-03-15 05:59:58"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1354,28 +1354,29 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "c117fe1638d2085c33b1a129ac7cbb08de93a608"
+                "reference": "52692292a7c21a81862785e889266334b4dfdb43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/c117fe1638d2085c33b1a129ac7cbb08de93a608",
-                "reference": "c117fe1638d2085c33b1a129ac7cbb08de93a608",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/52692292a7c21a81862785e889266334b4dfdb43",
+                "reference": "52692292a7c21a81862785e889266334b4dfdb43",
                 "shasum": ""
             },
             "require": {
                 "jakub-onderka/php-parallel-lint": "~0.8",
-                "php": "^5.6|^7.0"
+                "php": "^5.6|^7.0",
+                "squizlabs/php_codesniffer": "^2.5.0"
             },
             "require-dev": {
-                "consistence/coding-standard": "^0.10",
+                "consistence/coding-standard": "^0.10.1",
                 "phing/phing": "^2.9",
                 "phpstan/phpstan": "dev-dev#1cb3904e17",
                 "phpunit/phpunit": "^5.0",
-                "satooshi/php-coveralls": "dev-master"
+                "satooshi/php-coveralls": "^1.0"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1383,7 +1384,7 @@
                 "MIT"
             ],
             "description": "Slevomat Coding Standard for PHP_CodeSniffer extends Consistence Coding Standard by providing sniffs with additional checks.",
-            "time": "2016-01-06 20:00:22"
+            "time": "2016-03-18 09:40:44"
         },
         {
             "name": "squizlabs/php_codesniffer",
