@@ -5,10 +5,7 @@ use Vanio\TypeParser\SimpleType;
 use Vanio\TypeParser\Tests\Fixtures\Bar;
 use Vanio\TypeParser\Tests\Fixtures\Foo;
 use Vanio\TypeParser\Type;
-use Vanio\TypeParser\TypeContextFactory;
 use Vanio\TypeParser\TypeParser;
-use Vanio\TypeParser\TypeResolver;
-use Vanio\TypeParser\UseStatementsParser;
 
 class TypeParserTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,7 +21,7 @@ class TypeParserTest extends \PHPUnit_Framework_TestCase
             return;
         }
 
-        $typeParser = new TypeParser(new TypeResolver, new TypeContextFactory(new UseStatementsParser));
+        $typeParser = new TypeParser;
         self::$fooTypes = $typeParser->parsePropertyTypes(Foo::class);
         self::$barTypes = $typeParser->parsePropertyTypes(Bar::class);
     }

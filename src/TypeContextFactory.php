@@ -9,9 +9,9 @@ class TypeContextFactory
     /** @var UseStatementsParser */
     private $parser;
 
-    public function __construct(UseStatementsParser $parser)
+    public function __construct(UseStatementsParser $parser = null)
     {
-        $this->parser = $parser;
+        $this->parser = $parser ?? new UseStatementsParser;
     }
 
     public function createContextFromNamespace(string $namespace, string $fileName): TypeContext

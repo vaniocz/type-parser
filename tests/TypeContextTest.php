@@ -18,13 +18,16 @@ class TypeContextTest extends \PHPUnit_Framework_TestCase
 
     function it_can_be_instantiated_using_namespace()
     {
-        TypeContext::fromNamespace(__NAMESPACE__, $this->namespaceAliases);
+        $this->assertInstanceOf(TypeContext::class, TypeContext::fromNamespace(__NAMESPACE__, $this->namespaceAliases));
     }
 
     function test_it_can_be_instantiated_using_class()
     {
-        TypeContext::fromClass(new \ReflectionClass(__CLASS__));
-        TypeContext::fromClass(__CLASS__, __CLASS__, $this->namespaceAliases);
+        $this->assertInstanceOf(TypeContext::class, TypeContext::fromClass(new \ReflectionClass(__CLASS__)));
+        $this->assertInstanceOf(
+            TypeContext::class,
+            TypeContext::fromClass(__CLASS__, __CLASS__, $this->namespaceAliases)
+        );
     }
 
     function test_namespace_can_be_obtained()
