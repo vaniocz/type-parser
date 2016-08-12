@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
-<ruleset name="Vanio Dependency Injection Extra Bundle Rule Set">
+<ruleset name="Vanio Ruleset">
     <rule ref="vendor/consistence/coding-standard/Consistence/ruleset.xml">
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
         <exclude name="Generic.WhiteSpace.ScopeIndent"/>
+        <exclude name="PEAR.WhiteSpace.ObjectOperatorIndent"/> <!-- because of deep tree structures -->
+        <exclude name="Squiz.ControlStructures.ControlSignature"/> <!-- {} is allowed -->
         <exclude name="Squiz.WhiteSpace.MemberVarSpacing"/>
         <exclude name="Squiz.WhiteSpace.FunctionSpacing.Before"/>
         <exclude name="PEAR.Classes.ClassDeclaration"/> <!-- already covered by PSR2.Classes.ClassDeclaration -->
@@ -38,10 +40,6 @@
 
     <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
     <rule ref="Generic.WhiteSpace.ScopeIndent"/>
-
-    <rule ref="PSR2.Classes.ClassDeclaration">
-        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNotAlone"/> <!-- {} is allowed -->
-    </rule>
 
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
         <properties>
