@@ -16,7 +16,7 @@ class TypeContextFactoryTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->parserMock = $this->getMockWithoutInvokingTheOriginalConstructor(UseStatementsParser::class);
+        $this->parserMock = $this->createMock(UseStatementsParser::class);
     }
 
     function test_creating_context_from_namespace()

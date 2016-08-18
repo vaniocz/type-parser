@@ -23,7 +23,7 @@ class CachingParserTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->types = [new SimpleType(Type::STRING)];
-        $this->typeParser = $this->getMockWithoutInvokingTheOriginalConstructor(TypeParser::class);
+        $this->typeParser = $this->createMock(TypeParser::class);
         $this->cache = $this->getMockBuilder(ArrayCache::class)->enableProxyingToOriginalMethods()->getMock();
     }
 
