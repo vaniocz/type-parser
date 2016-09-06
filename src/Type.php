@@ -55,6 +55,8 @@ interface Type
 
     function isCompound(): bool;
 
+    function primaryType(): self;
+
     /**
      * @return self[]
      */

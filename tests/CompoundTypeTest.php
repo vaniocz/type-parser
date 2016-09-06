@@ -14,7 +14,7 @@ class CompoundTypeTest extends \PHPUnit_Framework_TestCase
     /** @var CompoundType */
     private $type;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->types = [new SimpleType(Type::INTEGER), new SimpleType(Type::STRING)];
         $this->type = new CompoundType(...$this->types);
@@ -96,6 +96,12 @@ class CompoundTypeTest extends \PHPUnit_Framework_TestCase
     function it_is_compound()
     {
         $this->assertTrue($this->type->isCompound());
+    }
+
+    function test_primary_type_can_be_obtained()
+    {
+        $this->assertSame(Type::INTEGER, $this->type->primaryType()->type());
+        $this->assertSame(Type::STRING, (new CompoundType(Type::NULL, Type::STRING))->primaryType()->type());
     }
 
     function test_type_parameters_can_be_obtained()

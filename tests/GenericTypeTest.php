@@ -94,6 +94,12 @@ class GenericTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->genericType->isCompound());
     }
 
+    function test_primary_type_can_be_obtained()
+    {
+        $this->assertSame(Type::ARRAY, $this->typedArray->primaryType()->type());
+        $this->assertSame([], $this->typedArray->primaryType()->typeParameters());
+    }
+
     function test_type_parameters_can_be_obtained()
     {
         $this->assertEquals([new SimpleType(Type::STRING)], $this->genericType->typeParameters());

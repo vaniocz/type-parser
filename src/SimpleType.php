@@ -50,6 +50,11 @@ class SimpleType implements Type
         return false;
     }
 
+    public function primaryType(): Type
+    {
+        return $this;
+    }
+
     /**
      * @return Type[]
      */

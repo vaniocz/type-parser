@@ -29,28 +29,33 @@ class TypeParserTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string $property
      * @param string $type
+     * @param string $primaryType
      * @param Type[] $typeParameters
      * @param bool $nullable
      * @dataProvider fooTypes
      */
-    function test_it_parses_property_types(string $property, string $type, array $typeParameters, bool $nullable)
-    {
+    function test_it_parses_property_types(
+        string $property,
+        string $type,
+        string $primaryType,
+        array $typeParameters,
+        bool $nullable
+    ) {
         $this->assertArrayHasKey($property, self::$fooTypes);
         $fooType = self::$fooTypes[$property];
         $this->assertSame($type, $fooType->type());
+        $this->assertSame($primaryType, $fooType->primaryType()->type());
         $this->assertEquals($typeParameters, $fooType->typeParameters());
         $this->assertSame($nullable, $fooType->isNullable());
 
         $this->assertArrayHasKey($property, self::$barTypes);
         $barType = self::$barTypes[$property];
         $this->assertSame($type, $barType->type());
+        $this->assertSame($primaryType, $barType->primaryType()->type());
         $this->assertEquals($typeParameters, $barType->typeParameters());
         $this->assertSame($nullable, $barType->isNullable());
     }
 
-    /**
-     * @dataProvider fooTypes
-     */
     function test_it_parses_property_types_of_child_class()
     {
         $this->assertSame(Type::INTEGER, self::$fooTypes['extended']->type());
@@ -60,16 +65,73 @@ class TypeParserTest extends \PHPUnit_Framework_TestCase
     public function fooTypes(): array
     {
         return [
-            ['arrayIterator', \ArrayIterator::class, [], false],
-            ['typeParser', TypeParser::class, [], false],
-            ['nullableType', Type::class, [], true],
-            ['typeIterator', \ArrayIterator::class, [new SimpleType(Type::class)], false],
-            ['preciselyMergedTypeIterator', \ArrayIterator::class, [new SimpleType(Type::class)], false],
-            ['roughlyMergedTypeIterator', \ArrayIterator::class, [], false],
-            ['nullableTypeIterator', \ArrayIterator::class, [new SimpleType(Type::class)], true],
-            ['genericArray', Type::ARRAY, [new SimpleType(Type::INTEGER), new SimpleType(Type::class)], false],
-            ['scalar', Type::SCALAR, [], false],
-            ['mixed', Type::MIXED, [], false],
+            [
+                'arrayIterator',
+                \ArrayIterator::class,
+                \ArrayIterator::class,
+                [],
+                false,
+            ], [
+                'typeParser',
+                TypeParser::class,
+                TypeParser::class,
+                [],
+                false,
+            ], [
+                'nullableType',
+                Type::class,
+                Type::class,
+                [],
+                true,
+            ], [
+                'nullableObject',
+                Type::OBJECT,
+                Type::class,
+                [],
+                true,
+            ], [
+                'typeIterator',
+                \ArrayIterator::class,
+                \ArrayIterator::class,
+                [new SimpleType(Type::class)],
+                false,
+            ], [
+                'preciselyMergedTypeIterator',
+                \ArrayIterator::class,
+                \ArrayIterator::class,
+                [new SimpleType(Type::class)],
+                false,
+            ], [
+                'roughlyMergedTypeIterator',
+                \ArrayIterator::class,
+                \ArrayIterator::class,
+                [],
+                false,
+            ], [
+                'nullableTypeIterator',
+                \ArrayIterator::class,
+                \ArrayIterator::class,
+                [new SimpleType(Type::class)],
+                true,
+            ], [
+                'genericArray',
+                Type::ARRAY,
+                Type::ARRAY,
+                [new SimpleType(Type::INTEGER), new SimpleType(Type::class)],
+                false,
+            ], [
+                'scalar',
+                Type::SCALAR,
+                Type::INTEGER,
+                [],
+                false,
+            ], [
+                'mixed',
+                Type::MIXED,
+                Type::INTEGER,
+                [],
+                false,
+            ],
         ];
     }
 }

@@ -81,6 +81,13 @@ class SimpleTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse((new SimpleType(Type::STRING))->isCompound());
     }
 
+    function test_primary_type_can_be_obtained()
+    {
+        $this->assertSame(Type::STRING, (new SimpleType(Type::STRING))->primaryType()->type());
+        $this->assertSame(Type::STRING, (new SimpleType('STRING'))->primaryType()->type());
+        $this->assertSame(\stdClass::class, (new SimpleType(\stdClass::class))->primaryType()->type());
+    }
+
     function test_type_parameters_are_empty()
     {
         $this->assertSame([], (new SimpleType(Type::STRING))->typeParameters());

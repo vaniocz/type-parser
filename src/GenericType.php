@@ -78,6 +78,11 @@ class GenericType implements Type
         return false;
     }
 
+    public function primaryType(): Type
+    {
+        return $this->type;
+    }
+
     /**
      * @return SimpleType[]
      */

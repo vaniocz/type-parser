@@ -12,6 +12,9 @@ class CompoundType implements Type, \IteratorAggregate
     /** @var Type|null  */
     private $type;
 
+    /** @var Type|null  */
+    private $primaryType;
+
     /** @var bool */
     private $nullable = false;
 
@@ -75,6 +78,11 @@ class CompoundType implements Type, \IteratorAggregate
         return true;
     }
 
+    public function primaryType(): Type
+    {
+        return $this->primaryType;
+    }
+
     /**
      * @return self[]
      */
@@ -105,6 +113,7 @@ class CompoundType implements Type, \IteratorAggregate
                 $this->nullable = true;
             } else {
                 $this->type = $this->type ? $this->type->merge($type) : $type;
+                $this->primaryType = $this->primaryType ?: $type->primaryType();
             }
         }
 

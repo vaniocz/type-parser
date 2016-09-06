@@ -22,6 +22,9 @@ class Foo
     /** @var Type|null */
     public $nullableType;
 
+    /** @var null|Type|\stdClass */
+    public $nullableObject;
+
     /** @var ArrayIterator<Type> */
     public $typeIterator;
 
