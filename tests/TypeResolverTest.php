@@ -1,6 +1,7 @@
 <?php
 namespace Vanio\TypeParser\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Vanio\TypeParser\CompoundType;
 use Vanio\TypeParser\GenericType;
 use Vanio\TypeParser\SimpleType;
@@ -8,7 +9,7 @@ use Vanio\TypeParser\Type;
 use Vanio\TypeParser\TypeContext;
 use Vanio\TypeParser\TypeResolver;
 
-class TypeResolverTest extends \PHPUnit_Framework_TestCase
+class TypeResolverTest extends TestCase
 {
     /** @var TypeResolver */
     private $typeResolver;

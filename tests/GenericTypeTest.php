@@ -1,12 +1,13 @@
 <?php
 namespace Vanio\TypeParser\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Vanio\TypeParser\CompoundType;
 use Vanio\TypeParser\GenericType;
 use Vanio\TypeParser\SimpleType;
 use Vanio\TypeParser\Type;
 
-class GenericTypeTest extends \PHPUnit_Framework_TestCase
+class GenericTypeTest extends TestCase
 {
     /** @var SimpleType|\PHPUnit_Framework_MockObject_MockObject */
     private $simpleTypeMock;

@@ -1,10 +1,11 @@
 <?php
 namespace Vanio\TypeParser\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Vanio\TypeParser\TypeContextFactory;
 use Vanio\TypeParser\UseStatementsParser;
 
-class TypeContextFactoryTest extends \PHPUnit_Framework_TestCase
+class TypeContextFactoryTest extends TestCase
 {
     /** @var UseStatementsParser|\PHPUnit_Framework_MockObject_MockObject */
     private $parserMock;

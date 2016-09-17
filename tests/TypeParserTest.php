@@ -1,13 +1,14 @@
 <?php
 namespace Vanio\TypeParser\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Vanio\TypeParser\SimpleType;
 use Vanio\TypeParser\Tests\Fixtures\Bar;
 use Vanio\TypeParser\Tests\Fixtures\Foo;
 use Vanio\TypeParser\Type;
 use Vanio\TypeParser\TypeParser;
 
-class TypeParserTest extends \PHPUnit_Framework_TestCase
+class TypeParserTest extends TestCase
 {
     /** @var Type[] */
     private static $fooTypes;

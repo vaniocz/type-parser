@@ -1,9 +1,10 @@
 <?php
 namespace Vanio\TypeParser\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Vanio\TypeParser\TypeContext;
 
-class TypeContextTest extends \PHPUnit_Framework_TestCase
+class TypeContextTest extends TestCase
 {
     /** @var string[] */
     private $namespaceAliases = ['typecontext' => 'Vanio\TypeParser\TypeContext'];

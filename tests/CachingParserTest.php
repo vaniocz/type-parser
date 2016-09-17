@@ -2,6 +2,7 @@
 namespace Vanio\TypeParser\Tests;
 
 use Doctrine\Common\Cache\ArrayCache;
+use PHPUnit\Framework\TestCase;
 use Vanio\TypeParser\CachingParser;
 use Vanio\TypeParser\SimpleType;
 use Vanio\TypeParser\Tests\Fixtures\Bar;
@@ -9,7 +10,7 @@ use Vanio\TypeParser\Tests\Fixtures\Foo;
 use Vanio\TypeParser\Type;
 use Vanio\TypeParser\TypeParser;
 
-class CachingParserTest extends \PHPUnit_Framework_TestCase
+class CachingParserTest extends TestCase
 {
     /** @var Type[] */
     private $types;

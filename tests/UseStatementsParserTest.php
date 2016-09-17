@@ -1,6 +1,7 @@
 <?php
 namespace Vanio\TypeParser\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\ClassUsesTrait;
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\ClassWithClosureDeclaration;
 use Vanio\TypeParser\Tests\Fixtures\UseStatementsParser\ClassWithFullyQualifiedUseStatements;
@@ -21,7 +22,7 @@ require_once FIXTURES_DIRECTORY . 'NonNamespacedClass.php';
 require_once FIXTURES_DIRECTORY . 'GlobalNamespacesPerFileWithClassAsFirst.php';
 require_once FIXTURES_DIRECTORY . 'GlobalNamespacesPerFileWithClassAsLast.php';
 
-class UseStatementsParserTest extends \PHPUnit_Framework_TestCase
+class UseStatementsParserTest extends TestCase
 {
     const FIXTURES_NAMESPACE = __NAMESPACE__ . '\Fixtures\UseStatementsParser';
 
