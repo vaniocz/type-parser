@@ -17,9 +17,9 @@
             <argument type="service" id="vanio_type_parser.type_parser"/>
             <argument type="service" id="vanio_type_parser.filesystem_cache"/>
             <argument>%kernel.debug%</argument>
-            <autowiring-type>Vanio\TypeParser\Parser</autowiring-type>
         </service>
 
         <service id="vanio_type_parser.parser" alias="vanio_type_parser.caching_parser"/>
+        <service id="Vanio\TypeParser\Parser" alias="vanio_type_parser.parser"/>
     </services>
 </container>
