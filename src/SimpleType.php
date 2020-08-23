@@ -63,6 +63,10 @@ class SimpleType implements Type
         return [];
     }
 
+    /**
+     * @param mixed $value
+     * @return bool
+     */
     public function equals($value): bool
     {
         return $value instanceof self && $this->type === $value->type();

@@ -91,6 +91,10 @@ class GenericType implements Type
         return $this->typeParameters;
     }
 
+    /**
+     * @param mixed $value
+     * @return bool
+     */
     public function equals($value): bool
     {
         return $value instanceof self && $this->literal === (string) $value;

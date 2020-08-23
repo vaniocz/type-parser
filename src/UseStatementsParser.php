@@ -73,7 +73,13 @@ class UseStatementsParser
         return $content;
     }
 
-    private function parseUseStatements(string $content, string $namespace, bool $merge = false)
+    /**
+     * @param string $content
+     * @param string $namespace
+     * @param bool $merge
+     * @return string[]
+     */
+    private function parseUseStatements(string $content, string $namespace, bool $merge = false): array
     {
         $tokenParser = new TokenParser('<?php ' . $this->removeContentBeforeNamespace($content, $namespace));
         $useStatements = [];
@@ -110,6 +116,10 @@ class UseStatementsParser
         return $count ? $content : '';
     }
 
+    /**
+     * @param TokenParser $tokenParser
+     * @param mixed[] $token
+     */
     private function skipClassDeclaration(TokenParser $tokenParser, array $token)
     {
         $braceLevel = 0;

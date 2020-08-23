@@ -63,6 +63,9 @@ class TypeParserTest extends TestCase
         $this->assertSame(Type::FLOAT, self::$barTypes['extended']->type());
     }
 
+    /**
+     * @return mixed[]
+     */
     public function fooTypes(): array
     {
         return [

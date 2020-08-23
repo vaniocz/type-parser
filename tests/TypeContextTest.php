@@ -17,7 +17,7 @@ class TypeContextTest extends TestCase
         $this->typeContext = TypeContext::fromClass(__CLASS__, null, $this->namespaceAliases);
     }
 
-    function it_can_be_instantiated_using_namespace()
+    function test_it_can_be_instantiated_using_namespace()
     {
         $this->assertInstanceOf(TypeContext::class, TypeContext::fromNamespace(__NAMESPACE__, $this->namespaceAliases));
     }

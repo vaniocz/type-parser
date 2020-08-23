@@ -62,6 +62,10 @@ interface Type
      */
     function typeParameters(): array;
 
+    /**
+     * @param mixed $value
+     * @return bool
+     */
     function equals($value): bool;
 
     function merge(Type $type): self;

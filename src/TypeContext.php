@@ -20,7 +20,7 @@ class TypeContext
 
     /**
      * @param string $namespace
-     * @param array $namespaceAliases
+     * @param string[] $namespaceAliases
      * @return self
      */
     public static function fromNamespace(string $namespace = '', array $namespaceAliases = []): self

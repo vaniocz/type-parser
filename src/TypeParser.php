@@ -16,7 +16,7 @@ class TypeParser implements Parser
     /** @var TypeContextFactory */
     private $contextFactory;
 
-    /** @var array */
+    /** @var mixed[] */
     private $propertyTypes = [];
 
     public function __construct(TypeResolver $typeResolver = null, TypeContextFactory $contextFactory = null)

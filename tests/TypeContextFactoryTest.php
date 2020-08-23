@@ -10,6 +10,7 @@ class TypeContextFactoryTest extends TestCase
     /** @var UseStatementsParser|\PHPUnit_Framework_MockObject_MockObject */
     private $parserMock;
 
+    /** @var string[] */
     private $namespaceAliases = [
         'typecontextfactory' => 'Vanio\TypeParser\TypeContextFactory',
         'usestatementsparser' => 'Vanio\TypeParser\UseStatementsParser',

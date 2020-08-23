@@ -91,6 +91,10 @@ class CompoundType implements Type, \IteratorAggregate
         return $this->type->typeParameters();
     }
 
+    /**
+     * @param mixed $type
+     * @return bool
+     */
     public function equals($type): bool
     {
         return $this === $type || $type instanceof self && !array_diff($this->types, iterator_to_array($type));

@@ -13,11 +13,11 @@
         "doctrine/cache": "^1.6"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.5",
+        "phpunit/phpunit": "^6.5.14",
         "symfony/dependency-injection": "^3.0",
         "symfony/config": "^3.0",
         "symfony/http-kernel": "^3.0",
-        "vanio/coding-standards": "^0.1@dev"
+        "vanio/coding-standards": "^0.2@dev"
     },
     "autoload": {
         "psr-4": {"Vanio\\TypeParser\\": "src/"},
@@ -28,8 +28,13 @@
     },
     "scripts": {
         "test": "\"vendor/bin/phpunit\"",
-        "lint": "\"vendor/bin/phpcs\" --standard=vendor/vanio/coding-standards/ruleset.xml --extensions=php --encoding=utf-8 --ignore=vendor,tests/Fixtures .",
+        "lint": "\"vendor/bin/phpcs\" -s --standard=vendor/vanio/coding-standards/ruleset.xml --extensions=php --encoding=utf-8 --ignore=vendor,tests/Fixtures .",
         "fix": "\"vendor/bin/phpcbf\" --standard=vendor/vanio/coding-standards/ruleset.xml --extensions=php --encoding=utf-8 --no-patch --ignore=vendor,tests/Fixtures ."
+    },
+    "config": {
+        "platform": {
+            "php": "7.0"
+        }
     },
     "extra": {
         "branch-alias": {

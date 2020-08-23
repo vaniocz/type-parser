@@ -94,7 +94,7 @@ class CompoundTypeTest extends TestCase
         $this->assertFalse($this->type->isGeneric());
     }
 
-    function it_is_compound()
+    function test_it_is_compound()
     {
         $this->assertTrue($this->type->isCompound());
     }
