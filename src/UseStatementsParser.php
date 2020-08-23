@@ -55,7 +55,7 @@ class UseStatementsParser
     {
         try {
             $file = new \SplFileObject($fileName);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return '';
         }
 

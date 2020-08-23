@@ -19,7 +19,7 @@ class CompoundType implements Type, \IteratorAggregate
     private $nullable = false;
 
     /**
-     * @param Type[]|array ...$types
+     * @param Type|string ...$types
      */
     public function __construct(...$types)
     {

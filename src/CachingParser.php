@@ -51,10 +51,6 @@ class CachingParser implements Parser
         return $this->propertyTypes[$class];
     }
 
-    /**
-     * @param string $class
-     * @return string
-     */
     private function resolveCacheId(string $class): string
     {
         if (!$this->debug) {

@@ -34,7 +34,7 @@ class UseStatementsParserTest extends TestCase
         $this->parser = new UseStatementsParser;
     }
 
-    public function test_parsing_class_with_multiple_classes_in_file()
+    function test_parsing_class_with_multiple_classes_in_file()
     {
         $this->assertSame(
             [
@@ -45,7 +45,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_multiple_imports_in_use_statement()
+    function test_parsing_class_with_multiple_imports_in_use_statement()
     {
         $this->assertSame(
             [
@@ -56,12 +56,12 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_when_not_user_defined()
+    function test_parsing_class_when_not_user_defined()
     {
         $this->assertSame([], $this->parser->parseClass(\stdClass::class));
     }
 
-    public function test_parsing_class_when_file_does_not_exist()
+    function test_parsing_class_when_file_does_not_exist()
     {
         $classMock = $this->getMockBuilder('\ReflectionClass')->disableOriginalConstructor()->getMock();
         $classMock->expects($this->once())
@@ -74,7 +74,7 @@ class UseStatementsParserTest extends TestCase
         $this->assertSame([], $this->parser->parseClass($classMock));
     }
 
-    public function test_parsing_class_when_it_is_not_namespaced()
+    function test_parsing_class_when_it_is_not_namespaced()
     {
         $this->assertSame(
             [
@@ -85,7 +85,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_when_it_is_interface()
+    function test_parsing_class_when_it_is_interface()
     {
         $this->assertSame(
             [
@@ -96,7 +96,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_fully_qualified_use_statements()
+    function test_parsing_class_with_fully_qualified_use_statements()
     {
         $this->assertSame(
             [
@@ -108,7 +108,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_namespace_and_class_commented_out()
+    function test_parsing_class_with_namespace_and_class_commented_out()
     {
         $this->assertSame(
             [
@@ -119,7 +119,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_equal_namespaces_per_file_having_class_as_first()
+    function test_parsing_class_with_equal_namespaces_per_file_having_class_as_first()
     {
         $this->assertSame(
             [
@@ -130,7 +130,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_equal_namespaces_per_file_having_class_as_last()
+    function test_parsing_class_with_equal_namespaces_per_file_having_class_as_last()
     {
         $this->assertSame(
             [
@@ -141,7 +141,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_different_namespaces_per_file_having_class_as_first()
+    function test_parsing_class_with_different_namespaces_per_file_having_class_as_first()
     {
         $this->assertSame(
             ['foo' => self::FIXTURES_NAMESPACE . '\Import\Foo'],
@@ -149,7 +149,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_different_namespaces_per_file_having_class_as_last()
+    function test_parsing_class_with_different_namespaces_per_file_having_class_as_last()
     {
         $this->assertSame(
             ['baz' => self::FIXTURES_NAMESPACE . '\Import\Baz'],
@@ -157,7 +157,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_global_namespaces_per_file_having_class_as_first()
+    function test_parsing_class_with_global_namespaces_per_file_having_class_as_first()
     {
         $this->assertSame(
             [
@@ -168,7 +168,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_global_namespaces_per_file_having_class_as_last()
+    function test_parsing_class_with_global_namespaces_per_file_having_class_as_last()
     {
         $this->assertSame(
             [
@@ -179,7 +179,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_namespace_having_closure_declaration()
+    function test_parsing_class_with_namespace_having_closure_declaration()
     {
         $this->assertSame(
             [
@@ -190,7 +190,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_with_closure_declaration()
+    function test_parsing_class_with_closure_declaration()
     {
         $this->assertSame(
             [
@@ -201,7 +201,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_class_which_uses_trait()
+    function test_parsing_class_which_uses_trait()
     {
         $this->assertSame(
             [
@@ -212,7 +212,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_namespace_with_multiple_classes_in_file()
+    function test_parsing_namespace_with_multiple_classes_in_file()
     {
         $this->assertSame(
             [
@@ -226,7 +226,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_namespace_with_multiple_imports_in_use_statement()
+    function test_parsing_namespace_with_multiple_imports_in_use_statement()
     {
         $this->assertSame(
             [
@@ -240,12 +240,12 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_namespace_when_file_does_not_exist()
+    function test_parsing_namespace_when_file_does_not_exist()
     {
         $this->assertSame([], $this->parser->parseNamespace(self::FIXTURES_NAMESPACE, 'non/existent/file'));
     }
 
-    public function test_parsing_namespace_when_it_is_not_namespaced()
+    function test_parsing_namespace_when_it_is_not_namespaced()
     {
         $this->assertSame(
             [],
@@ -253,7 +253,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_namespace_with_equal_namespaces_per_file()
+    function test_parsing_namespace_with_equal_namespaces_per_file()
     {
         $this->assertSame(
             [
@@ -268,7 +268,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_namespace_with_global_namespaces_per_file()
+    function test_parsing_namespace_with_global_namespaces_per_file()
     {
         $this->assertSame(
             [
@@ -280,7 +280,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_namespace_with_closure_declaration()
+    function test_parsing_namespace_with_closure_declaration()
     {
         $this->assertSame(
             [
@@ -294,7 +294,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_namespace_with_class_having_closure_declaration()
+    function test_parsing_namespace_with_class_having_closure_declaration()
     {
         $this->assertSame(
             [
@@ -308,7 +308,7 @@ class UseStatementsParserTest extends TestCase
         );
     }
 
-    public function test_parsing_namespace_with_class_which_uses_trait()
+    function test_parsing_namespace_with_class_which_uses_trait()
     {
         $this->assertSame(
             [
