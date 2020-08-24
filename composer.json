@@ -14,8 +14,9 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^6.5.14",
-        "symfony/dependency-injection": "^3.0",
+        "symfony/dependency-injection": "^3.4.26",
         "symfony/config": "^3.0",
+        "symfony/http-foundation": "^3.4.35",
         "symfony/http-kernel": "^3.0",
         "vanio/coding-standards": "^0.2@dev"
     },
@@ -30,11 +31,6 @@
         "test": "\"vendor/bin/phpunit\"",
         "lint": "\"vendor/bin/phpcs\" -s --standard=vendor/vanio/coding-standards/ruleset.xml --extensions=php --encoding=utf-8 --ignore=vendor,tests/Fixtures .",
         "fix": "\"vendor/bin/phpcbf\" --standard=vendor/vanio/coding-standards/ruleset.xml --extensions=php --encoding=utf-8 --no-patch --ignore=vendor,tests/Fixtures ."
-    },
-    "config": {
-        "platform": {
-            "php": "7.0"
-        }
     },
     "extra": {
         "branch-alias": {
