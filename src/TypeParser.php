@@ -53,7 +53,12 @@ class TypeParser implements Parser
      */
     private function parsePropertyType(\ReflectionProperty $property, \ReflectionClass $class)
     {
-        if (!$type = $this->parseTypeAnnotation($property, self::ANNOTATION_VAR)) {
+        $type = $property->getType();
+
+        if ($type instanceof \ReflectionNamedType) {
+            $typeName = explode('\\', $type->getName());
+            $type = end($typeName);
+        } elseif (!$type = $this->parseTypeAnnotation($property, self::ANNOTATION_VAR)) {
             return null;
         }
 
